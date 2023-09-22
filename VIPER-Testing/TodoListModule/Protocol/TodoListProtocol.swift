@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol TodoListViewProtocol: class {
+protocol TodoListViewProtocol: AnyObject {
     var presenter: TodoListPresenterProtocol? { get set }
     
     // PRESENTER -> VIEW
@@ -15,7 +15,7 @@ protocol TodoListViewProtocol: class {
     func showErrorMessage(_ message: String)
 }
 
-protocol TodoListPresenterProtocol: class {
+protocol TodoListPresenterProtocol: AnyObject {
     var view: TodoListViewProtocol? { get set }
     var interactor: TodoListInteractorInputProtocol? { get set }
     var router: TodoListRouterProtocol? { get set }
@@ -27,7 +27,7 @@ protocol TodoListPresenterProtocol: class {
     func removeTodo(_ todo: TodoItem)
 }
 
-protocol TodoListInteractorInputProtocol: class {
+protocol TodoListInteractorInputProtocol: AnyObject {
     var presenter: TodoListInteractorOuputProtocol? { get set }
     
     // PRESENTER -> INTERACTOR
@@ -36,7 +36,7 @@ protocol TodoListInteractorInputProtocol: class {
     func deleteTodo(_ todo: TodoItem)
 }
 
-protocol TodoListInteractorOuputProtocol: class {
+protocol TodoListInteractorOuputProtocol: AnyObject {
     // INTERACTOR -> PRESENTER
     func didAddTodo(_ todo: TodoItem)
     func didRemoveTodo(_ todo: TodoItem)
@@ -44,7 +44,7 @@ protocol TodoListInteractorOuputProtocol: class {
     func onError(message: String)
 }
 
-protocol TodoListRouterProtocol: class {
+protocol TodoListRouterProtocol: AnyObject {
     static func createTodoListModule() -> UIViewController
     
     // PRESENTER -> ROUTER

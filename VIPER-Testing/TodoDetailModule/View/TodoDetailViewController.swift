@@ -22,10 +22,12 @@ class TodoDetailViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .white
+        let deleteButton = UIBarButtonItem(
+            barButtonSystemItem: .trash, target: self, action: #selector(deleteTapped(_:))
+        )
+        deleteButton.tintColor = UIColor.red
         navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(
-                barButtonSystemItem: .trash, target: self, action: #selector(deleteTapped(_:))
-            ),
+            deleteButton,
             UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(editTapped(_:))),
         ]
         view.addSubview(titleLabel)

@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol TodoDetailViewProtocol: class {
+protocol TodoDetailViewProtocol: AnyObject {
     var presenter: TodoDetailPresenterProtocol? { get set }
     
     // PRESENTER -> VIEW
     func showTodo(_ todo: TodoItem)
 }
 
-protocol TodoDetailPresenterProtocol: class {
+protocol TodoDetailPresenterProtocol: AnyObject {
     var view: TodoDetailViewProtocol? { get set }
     var interactor: TodoDetailInteractorInputProtocol? { get set }
     var router: TodoDetailRouterProtocol? { get set }
@@ -25,7 +25,7 @@ protocol TodoDetailPresenterProtocol: class {
     func deleteTodo()
 }
 
-protocol TodoDetailInteractorInputProtocol: class {
+protocol TodoDetailInteractorInputProtocol: AnyObject {
     var presenter: TodoDetailInteractorOutputProtocol? { get set }
     var todoItem: TodoItem? { get set }
     
@@ -34,13 +34,13 @@ protocol TodoDetailInteractorInputProtocol: class {
     func editTodo(title: String, content: String)
 }
 
-protocol TodoDetailInteractorOutputProtocol: class {
+protocol TodoDetailInteractorOutputProtocol: AnyObject {
     // INTERACTOR -> PRESENTER
     func didDeleteTodo()
     func didEditTodo(_ todo: TodoItem)
 }
 
-protocol TodoDetailRouterProtocol: class {
+protocol TodoDetailRouterProtocol: AnyObject {
     static func createTodoDetailRouterModule(with todo: TodoItem) -> UIViewController
     
     // PRESENTER -> ROUTER
